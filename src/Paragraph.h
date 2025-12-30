@@ -45,6 +45,8 @@ namespace dxfrg
         enum class Alignment { Left, Centered, Right, Justified, Distributed };
         void SetAlignment( const Alignment alignment );
 
+        void SetBidi( const bool bidi );
+
         void SetLineSpacingSingle();               // Single
         void SetLineSpacingLines( const double at ); // 1.5 lines, Double (2 lines), Multiple (3 lines)
         void SetLineSpacingAtLeast( const int at );  // At Least
@@ -105,5 +107,5 @@ namespace dxfrg
         pugi::xml_node w_pPr_;
     };
 
-    bool dxfrg::operator==( const Paragraph& left, const Paragraph& right );
+    bool operator==( const Paragraph& left, const Paragraph& right );
 }

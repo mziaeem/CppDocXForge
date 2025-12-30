@@ -3,6 +3,7 @@
 #include "Box.h"
 
 #include "pugixml.hpp"
+#include <cstring>
 
 namespace dxfrg
 {

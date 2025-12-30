@@ -80,6 +80,22 @@ void Run::AppendLineBreak()
     impl_->w_r_.append_child( "w:br" );
 }
 
+void Run::SetDirection( const Direction direction )
+{
+  if (!impl_) return; 
+  auto rtl = impl_->w_rPr_.child( "w:rtl" );
+  if (direction == Direction::Rtl){
+    if (!rtl) {
+      rtl = impl_->w_rPr_.append_child( "w:rtl" );
+    }
+  }else{
+    if (rtl){
+      impl_->w_rPr_.remove_child(rtl);
+    }
+  }
+}
+
+
 void 
 Run::SetFontColor( const unsigned int FontColor )
 {

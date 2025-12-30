@@ -3,6 +3,7 @@
 #include "pugixml.hpp"
 
 #include <iostream>
+#include <cstring>
 
 namespace dxfrg
 {
@@ -44,6 +45,9 @@ namespace dxfrg
             SubScript = 2,
             SuperScript = 4
         };
+
+        enum class Direction { Rtl, Ltr };
+        void SetDirection( const Direction direction );
 
         void SetFontColor( const unsigned int FontColor );
         unsigned int GetFontCOLOR();

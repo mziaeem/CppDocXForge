@@ -116,9 +116,25 @@ Run Paragraph::AppendPageBreak()
     return Run( impl );
 }
 
+void Paragraph::SetBidi( const bool bidi)
+{
+  if (!impl_) return; 
+  auto direction = impl_->w_pPr_.child( "w:bidi" );
+  if (bidi){
+    if (!direction) {
+      direction = impl_->w_pPr_.append_child( "w:bidi" );
+    }
+  }else{
+    if (direction){
+      impl_->w_pPr_.remove_child(direction);
+    }
+  }
+}
+
+
 void Paragraph::SetAlignment( const Alignment alignment )
 {
-    if (!impl_) return;
+  if (!impl_) return;
 
     const char* val = "";
     switch (alignment) {

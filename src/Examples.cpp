@@ -8,7 +8,7 @@
 #include "TextFrame.h"
 #include "Image.h"
 
-void BuildBasicDocument( dxfrg::Document& Doc )
+void BuildRtlDoc(dxfrg::Document& Doc)
 {
     auto p1 = Doc.AppendParagraph( "Hello, World!", 12, "Times New Roman" );
     //Need to use u8string?
@@ -16,9 +16,9 @@ void BuildBasicDocument( dxfrg::Document& Doc )
     auto p3 = Doc.AppendParagraph( u8"你好，World!", 16, "Times New Roman", u8"宋体" );*/
 
     auto p4 = Doc.AppendParagraph();
-    p4.SetAlignment( dxfrg::Paragraph::Alignment::Centered );
-
-    auto p4r1 = p4.AppendRun( "This is a simple sentence. ", 12, "Arial" );
+    p4.SetBidi(true);
+    auto p4r1 = p4.AppendRun( "This is a ساده sentence. ", 12, "Arial" );
+    p4r1.SetDirection(dxfrg::Run::Direction::Rtl);
     p4r1.SetCharacterSpacing( dxfrg::Pt2Twip( 2 ) );
 
     //Need to use u8string?
@@ -392,8 +392,9 @@ void BuildSuperSubDocument( dxfrg::Document& Doc )
 
 int main()
 {
-    dxfrg::Document Doc( "../bin/Test.docx" );
+    dxfrg::Document Doc( "Test.docx" );
 
+    BuildRtlDoc(Doc);
     //BuildBasicDocument( Doc );
     //BuildBreaksDocument( Doc );
     //BuildPageNumberDocument( Doc );
@@ -406,6 +407,6 @@ int main()
     //BuildTextFrameDocument( Doc );
     //BuildTraverseDocument( Doc );
     //BuildImageDocument( Doc );
-    BuildSuperSubDocument( Doc );
+    //BuildSuperSubDocument( Doc );
     Doc.Save();
 }

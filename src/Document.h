@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <map>
-#include <string>
+#include <cstring>
 
 namespace dxfrg
 {
